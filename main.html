@@ -8,7 +8,7 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-	 <h2>Dynamic Shopping List</h2>
+	<h2>Dynamic Shopping List</h2>
   
   <div>
     <input type="text" id="item-name-input" placeholder="Item Name" />
@@ -54,14 +54,14 @@
       nameCell.innerHTML = itemName;
       nameCell.setAttribute("data-ns-test", "item-name");
       
-      priceCell.innerHTML = itemPrice.toFixed(2);
+      priceCell.innerHTML = itemPrice % 1 === 0 ? itemPrice.toFixed(0) : itemPrice.toFixed(2);
       priceCell.setAttribute("data-ns-test", "item-price");
       
       // Update total
       var grandTotalElement = document.getElementById("grandTotal");
       var grandTotal = parseFloat(grandTotalElement.innerHTML);
       grandTotal += itemPrice;
-      grandTotalElement.innerHTML = grandTotal.toFixed(2);
+      grandTotalElement.innerHTML = grandTotal % 1 === 0 ? grandTotal.toFixed(0) : grandTotal.toFixed(2);
       
       // Clear input fields
       document.getElementById("item-name-input").value = "";
