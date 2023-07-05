@@ -11,8 +11,8 @@
 	 <h2>Dynamic Shopping List</h2>
   
   <div>
-    <input type="text" id="item-name-input" placeholder="Item Name" required>
-    <input type="number" id="item-price-input" placeholder="Item Price" required>
+    <input type="text" id="item-name-input" placeholder="Item Name" />
+    <input type="number" id="item-price-input" placeholder="Item Price" />
     <button onclick="addItem()">Add</button>
   </div>
   
@@ -24,15 +24,50 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td data-ns-test="item-name">Item Name</td>
-        <td data-ns-test="item-price">Item Price</td>
-      </tr>
       <tr id="grandTotalRow">
         <td colspan="2" style="text-align: right;">Total: <span id="grandTotal" data-ns-test="grandTotal">0</span></td>
       </tr>
     </tbody>
   </table>
+  
+  <script>
+    function addItem() {
+      var itemName = document.getElementById("item-name-input").value;
+      var itemPrice = parseFloat(document.getElementById("item-price-input").value);
+      
+      // Validate input
+      if (itemName.trim() === "" || isNaN(itemPrice)) {
+        alert("Invalid input. Please enter a valid name and price.");
+        return;
+      }
+      
+      var table = document.getElementById("shopping-list").getElementsByTagName("tbody")[0];
+      
+      // Create a new row
+      var newRow = table.insertRow(-1);
+      
+      // Insert cells
+      var nameCell = newRow.insertCell(0);
+      var priceCell = newRow.insertCell(1);
+      
+      // Set cell data with attributes
+      nameCell.innerHTML = itemName;
+      nameCell.setAttribute("data-ns-test", "item-name");
+      
+      priceCell.innerHTML = itemPrice.toFixed(2);
+      priceCell.setAttribute("data-ns-test", "item-price");
+      
+      // Update total
+      var grandTotalElement = document.getElementById("grandTotal");
+      var grandTotal = parseFloat(grandTotalElement.innerHTML);
+      grandTotal += itemPrice;
+      grandTotalElement.innerHTML = grandTotal.toFixed(2);
+      
+      // Clear input fields
+      document.getElementById("item-name-input").value = "";
+      document.getElementById("item-price-input").value = "";
+    }
+  </script>
     <script type="text/javascript" src="./script.js">
 </script>
 
