@@ -8,6 +8,31 @@
 
 <body>
 	<!-- the entire body must be written by student -->
+	 <h2>Dynamic Shopping List</h2>
+  
+  <div>
+    <input type="text" id="item-name-input" placeholder="Item Name" required />
+    <input type="number" id="item-price-input" placeholder="Item Price" required />
+    <button onclick="addItem()">Add</button>
+  </div>
+  
+  <table id="shopping-list">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Item Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-ns-test="item-name">Item Name</td>
+        <td data-ns-test="item-price">Item Price</td>
+      </tr>
+      <tr id="grandTotalRow">
+        <td colspan="2" style="text-align: right;">Total: <span id="grandTotal" data-ns-test="grandTotal">0</span></td>
+      </tr>
+    </tbody>
+  </table>
     <script type="text/javascript" src="./script.js">
 </script>
 
